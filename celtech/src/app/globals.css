@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #ffffff;
+  --color-foreground: #0f172a;
+
+  --color-ink: #0b1220;
+  --color-muted: #5b6b84;
+
+  --color-brand-50: #eff9ff;
+  --color-brand-100: #def2ff;
+  --color-brand-200: #b6e6ff;
+  --color-brand-300: #75d3ff;
+  --color-brand-400: #2cbcff;
+  --color-brand-500: #06a3f5;
+  --color-brand-600: #0082d1;
+  --color-brand-700: #0067a9;
+  --color-brand-800: #04568b;
+  --color-brand-900: #0a4873;
+
+  --color-accent-500: #2563eb;
+  --color-accent-600: #1d4ed8;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-soft: 0 10px 30px -12px rgba(2, 32, 71, 0.18);
+  --shadow-lift: 0 24px 60px -20px rgba(2, 32, 71, 0.28);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: var(--color-brand-200);
+    color: var(--color-ink);
+  }
+}
+
+@layer components {
+  .container-page {
+    width: 100%;
+    max-width: 76rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  .text-gradient {
+    background: linear-gradient(
+      90deg,
+      var(--color-accent-600),
+      var(--color-brand-500)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      background-color 0.2s ease,
+      color 0.2s ease;
+    will-change: transform;
+  }
+
+  .btn-primary {
+    background: linear-gradient(
+      90deg,
+      var(--color-accent-600),
+      var(--color-brand-500)
+    );
+    color: #fff;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lift);
+  }
+
+  .btn-ghost {
+    background: #fff;
+    color: var(--color-ink);
+    border: 1px solid rgb(15 23 42 / 0.1);
+  }
+
+  .btn-ghost:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-brand-300);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .card {
+    background: #fff;
+    border: 1px solid rgb(15 23 42 / 0.07);
+    border-radius: 1.25rem;
+    box-shadow: var(--shadow-soft);
+  }
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Subtle animated aurora used behind the hero */
+@keyframes aurora {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(3%, -4%, 0) scale(1.08);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.animate-aurora {
+  animation: aurora 18s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+}
