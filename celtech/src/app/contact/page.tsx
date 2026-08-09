@@ -13,7 +13,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: `Get in touch with ${site.name}. Visit our San Francisco office, send a message, or connect with us on social media.`,
+  description: `Get in touch with ${site.name}. Visit our office in Taos, NM, send a message, or connect with us on social media.`,
 };
 
 const socials = [

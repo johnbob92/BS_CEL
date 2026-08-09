@@ -392,7 +392,7 @@ export const openRoles = [
   },
   {
     title: "Cloud Solutions Architect",
-    location: "San Francisco, CA",
+    location: "Taos, NM",
     type: "Full-time",
     focus: "AWS · Kubernetes · IaC",
   },
@@ -410,7 +410,7 @@ export const openRoles = [
   },
   {
     title: "Technical Recruiter",
-    location: "San Francisco, CA",
+    location: "Taos, NM",
     type: "Full-time",
     focus: "Engineering hiring",
   },
@@ -451,7 +451,7 @@ export const events = [
   {
     title: "CELTech Cloud Roundtable",
     date: "Sep 18, 2026",
-    location: "San Francisco, CA",
+    location: "Taos, NM",
     type: "In person",
     description:
       "An intimate evening with engineering leaders on scaling cloud teams and controlling spend.",
@@ -467,9 +467,119 @@ export const events = [
   {
     title: "AI in Production Meetup",
     date: "Oct 21, 2026",
-    location: "San Francisco, CA",
+    location: "Taos, NM",
     type: "In person",
     description:
       "Practitioners share real stories of shipping and operating AI features at scale.",
+  },
+];
+
+/* ----------------------------------------------------------------- Legal */
+
+export type LegalSection = { heading: string; body: string[] };
+
+export const legalUpdated = "August 9, 2026";
+
+export const termsSections: LegalSection[] = [
+  {
+    heading: "1. Agreement to terms",
+    body: [
+      "These Terms of Service (“Terms”) govern your access to and use of the CELTech LLC website and any related services (collectively, the “Services”). By accessing or using the Services, you agree to be bound by these Terms. If you do not agree, please do not use the Services.",
+    ],
+  },
+  {
+    heading: "2. Use of the Services",
+    body: [
+      "You may use the Services only for lawful purposes and in accordance with these Terms. You agree not to use the Services in any way that could damage, disable, overburden, or impair them, or interfere with any other party's use of the Services.",
+      "You are responsible for ensuring that any information you provide to us is accurate and current.",
+    ],
+  },
+  {
+    heading: "3. Intellectual property",
+    body: [
+      "The Services and their original content, features, and functionality are and will remain the exclusive property of CELTech LLC and its licensors. Our trademarks may not be used in connection with any product or service without our prior written consent.",
+    ],
+  },
+  {
+    heading: "4. Talent and consulting engagements",
+    body: [
+      "Any placement, staffing, or consulting engagement is governed by a separate written agreement between CELTech LLC and the relevant client or professional. These Terms do not create any employment, agency, or partnership relationship on their own.",
+    ],
+  },
+  {
+    heading: "5. Disclaimers",
+    body: [
+      "The Services are provided on an “as is” and “as available” basis without warranties of any kind, whether express or implied. We do not warrant that the Services will be uninterrupted, secure, or error-free.",
+    ],
+  },
+  {
+    heading: "6. Limitation of liability",
+    body: [
+      "To the fullest extent permitted by law, CELTech LLC shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or relating to your use of the Services.",
+    ],
+  },
+  {
+    heading: "7. Changes to these terms",
+    body: [
+      "We may revise these Terms from time to time. The most current version will always be posted on this page, and material changes will be reflected in the “Last updated” date above.",
+    ],
+  },
+  {
+    heading: "8. Contact us",
+    body: [
+      "If you have any questions about these Terms, please contact us using the details in the site footer.",
+    ],
+  },
+];
+
+export const privacySections: LegalSection[] = [
+  {
+    heading: "1. Introduction",
+    body: [
+      "This Privacy Policy explains how CELTech LLC (“we,” “us,” or “our”) collects, uses, and protects information when you use our website and services. We are committed to handling your data responsibly and transparently.",
+    ],
+  },
+  {
+    heading: "2. Information we collect",
+    body: [
+      "We collect information you provide directly to us — such as your name, email address, phone number, company, and any message content — when you contact us, apply for a role, or engage our services.",
+      "We may also collect limited technical information automatically, such as your browser type, device, and pages visited, to help us improve the Services.",
+    ],
+  },
+  {
+    heading: "3. How we use information",
+    body: [
+      "We use the information we collect to respond to inquiries, match professionals with opportunities, deliver and improve our Services, and communicate with you about relevant updates.",
+    ],
+  },
+  {
+    heading: "4. Sharing of information",
+    body: [
+      "We do not sell your personal information. We may share information with clients or professionals only as needed to facilitate an engagement you have requested, and with service providers who help us operate the Services under appropriate confidentiality obligations.",
+    ],
+  },
+  {
+    heading: "5. Data retention and security",
+    body: [
+      "We retain personal information only for as long as necessary to fulfil the purposes described in this policy. We use reasonable technical and organizational measures designed to protect your information against unauthorized access, loss, or misuse.",
+    ],
+  },
+  {
+    heading: "6. Your rights",
+    body: [
+      "Depending on your location, you may have the right to access, correct, or delete your personal information, or to object to certain processing. To exercise these rights, please contact us using the details in the site footer.",
+    ],
+  },
+  {
+    heading: "7. Cookies",
+    body: [
+      "Our website may use cookies and similar technologies to remember your preferences (such as your light or dark theme) and to understand how the site is used. You can control cookies through your browser settings.",
+    ],
+  },
+  {
+    heading: "8. Changes to this policy",
+    body: [
+      "We may update this Privacy Policy from time to time. The most current version will always be posted on this page, with the “Last updated” date reflecting any changes.",
+    ],
   },
 ];

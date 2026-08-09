@@ -6,6 +6,9 @@ import {
   GitHubIcon,
   InstagramIcon,
   LinkedInIcon,
+  MailIcon,
+  MapPinIcon,
+  PhoneIcon,
   XIcon,
 } from "./icons";
 
@@ -52,12 +55,42 @@ const columns = [
 export function Footer() {
   return (
     <footer className="mt-24 border-t border-line bg-surface-2">
-      <div className="container-page grid gap-10 py-14 lg:grid-cols-[1.6fr_1fr_1fr_1fr]">
+      <div className="container-page grid gap-10 py-14 lg:grid-cols-[1.7fr_1fr_1fr_1fr]">
         <div>
           <Logo />
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-body">
-            {site.description}
+            {site.summary}
           </p>
+
+          <ul className="mt-6 space-y-3 text-sm">
+            <li>
+              <a
+                href={`mailto:${site.email}`}
+                className="inline-flex items-center gap-3 text-body transition-colors hover:text-brand-600"
+              >
+                <MailIcon className="h-4 w-4 text-brand-500" />
+                {site.email}
+              </a>
+            </li>
+            <li>
+              <a
+                href={site.phoneHref}
+                className="inline-flex items-center gap-3 text-body transition-colors hover:text-brand-600"
+              >
+                <PhoneIcon className="h-4 w-4 text-brand-500" />
+                {site.phone}
+              </a>
+            </li>
+            <li className="flex items-start gap-3 text-body">
+              <MapPinIcon className="mt-0.5 h-4 w-4 shrink-0 text-brand-500" />
+              <span>
+                {site.address.line1}
+                <br />
+                {site.address.line2}
+              </span>
+            </li>
+          </ul>
+
           <div className="mt-6 flex gap-3">
             {socials.map(({ href, label, Icon }) => (
               <a
@@ -100,9 +133,20 @@ export function Footer() {
           <p>
             © {new Date().getFullYear()} {site.name}. All rights reserved.
           </p>
-          <p>
-            {site.address.line1}, {site.address.line2}
-          </p>
+          <nav className="flex items-center gap-5">
+            <Link
+              href="/company/about/terms-of-service"
+              className="transition-colors hover:text-brand-600"
+            >
+              Terms of Service
+            </Link>
+            <Link
+              href="/company/about/privacy-policy"
+              className="transition-colors hover:text-brand-600"
+            >
+              Privacy Policy
+            </Link>
+          </nav>
         </div>
       </div>
     </footer>

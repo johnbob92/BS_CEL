@@ -6,15 +6,17 @@ export const site = {
   tagline: "The bridge between technical excellence and business innovation",
   description:
     "CELTech LLC connects outstanding technology professionals with organizations building the future — helping companies access the engineering expertise they need and helping professionals grow meaningful careers.",
-  email: "hello@celtech.com",
-  phone: "+1 (415) 555-0142",
-  phoneHref: "tel:+14155550142",
+  email: "admin@celtech.com",
+  phone: "+1 (505) 234-2345",
+  phoneHref: "tel:+15052342345",
   address: {
-    line1: "535 Mission Street, Floor 14",
-    line2: "San Francisco, CA 94105",
-    query: "535 Mission Street, San Francisco, CA 94105",
+    line1: "Treetop Ln",
+    line2: "Taos, NM 87571, USA",
+    query: "Treetop Ln, Taos, NM 87571",
   },
-  hours: "Mon–Fri · 9:00 AM – 6:00 PM PT",
+  hours: "Mon–Fri · 9:00 AM – 6:00 PM MT",
+  summary:
+    "CELTech LLC is a software consulting company that connects outstanding technology professionals with organizations building the future. We help companies access engineering excellence and help professionals grow meaningful careers.",
   social: {
     linkedin: "https://www.linkedin.com/company/celtech",
     instagram: "https://www.instagram.com/celtech",
