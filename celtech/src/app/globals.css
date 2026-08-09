@@ -1,0 +1,234 @@
+@import "tailwindcss";
+
+/* Enable class-based dark mode (toggled on <html class="dark">) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Semantic surface/text tokens — these flip between light and dark. */
+:root {
+  color-scheme: light;
+
+  --surface: #ffffff;
+  --surface-2: #f5f8fc;
+  --card: #ffffff;
+  --line: rgb(15 23 42 / 0.08);
+  --line-strong: rgb(15 23 42 / 0.14);
+
+  --heading: #0b1220;
+  --body: #475569;
+  --subtle: #64748b;
+
+  --brand-soft: #eff9ff;
+  --brand-soft-border: #b6e6ff;
+  --brand-soft-text: #0067a9;
+
+  --nav-bg: rgb(255 255 255 / 0.8);
+
+  --hero-from: #eaf6ff;
+  --hero-via: #ffffff;
+  --hero-to: #ffffff;
+}
+
+.dark {
+  color-scheme: dark;
+
+  --surface: #070b14;
+  --surface-2: #0c1322;
+  --card: #101a2d;
+  --line: rgb(255 255 255 / 0.10);
+  --line-strong: rgb(255 255 255 / 0.18);
+
+  --heading: #f1f5f9;
+  --body: #c3cfe0;
+  --subtle: #93a1b7;
+
+  --brand-soft: rgb(6 163 245 / 0.12);
+  --brand-soft-border: rgb(44 188 255 / 0.28);
+  --brand-soft-text: #75d3ff;
+
+  --nav-bg: rgb(7 11 20 / 0.72);
+
+  --hero-from: #0a1730;
+  --hero-via: #070b14;
+  --hero-to: #070b14;
+}
+
+@theme {
+  --color-brand-50: #eff9ff;
+  --color-brand-100: #def2ff;
+  --color-brand-200: #b6e6ff;
+  --color-brand-300: #75d3ff;
+  --color-brand-400: #2cbcff;
+  --color-brand-500: #06a3f5;
+  --color-brand-600: #0082d1;
+  --color-brand-700: #0067a9;
+  --color-brand-800: #04568b;
+  --color-brand-900: #0a4873;
+
+  --color-accent-500: #2563eb;
+  --color-accent-600: #1d4ed8;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-soft: 0 10px 30px -12px rgba(2, 32, 71, 0.18);
+  --shadow-lift: 0 24px 60px -20px rgba(2, 32, 71, 0.28);
+}
+
+/* Map semantic tokens to Tailwind utilities (inline = react to .dark) */
+@theme inline {
+  --color-background: var(--surface);
+  --color-foreground: var(--heading);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-card: var(--card);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-heading: var(--heading);
+  --color-body: var(--body);
+  --color-subtle: var(--subtle);
+  --color-brandsoft: var(--brand-soft);
+  --color-brandsoft-text: var(--brand-soft-text);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--surface);
+    color: var(--body);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--heading);
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: var(--color-brand-300);
+    color: #04223a;
+  }
+}
+
+@layer components {
+  .container-page {
+    width: 100%;
+    max-width: 76rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  .text-gradient {
+    background: linear-gradient(
+      90deg,
+      var(--color-accent-600),
+      var(--color-brand-500)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .dark .text-gradient {
+    background: linear-gradient(
+      90deg,
+      var(--color-brand-300),
+      var(--color-brand-500)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      background-color 0.2s ease,
+      color 0.2s ease;
+    will-change: transform;
+  }
+
+  .btn-primary {
+    background: linear-gradient(
+      90deg,
+      var(--color-accent-600),
+      var(--color-brand-500)
+    );
+    color: #fff;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lift);
+  }
+
+  .btn-ghost {
+    background: var(--card);
+    color: var(--heading);
+    border: 1px solid var(--line-strong);
+  }
+
+  .btn-ghost:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-brand-300);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 1.25rem;
+    box-shadow: var(--shadow-soft);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@keyframes aurora {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(3%, -4%, 0) scale(1.08);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.animate-aurora {
+  animation: aurora 18s ease-in-out infinite;
+}
