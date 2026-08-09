@@ -1,18 +1,17 @@
 export const site = {
-  name: "CELTECH LLC",
-  shortName: "CELTECH",
+  name: "CELTech LLC",
+  shortName: "CELTech",
   domain: "celtech.com",
   url: "https://celtech.com",
-  tagline: "Software consulting that ships.",
+  tagline: "The bridge between technical excellence and business innovation",
   description:
-    "CELTECH LLC is a software consulting company that designs, builds, and scales reliable web, mobile, and cloud products for ambitious teams.",
+    "CELTech LLC connects outstanding technology professionals with organizations building the future — helping companies access the engineering expertise they need and helping professionals grow meaningful careers.",
   email: "hello@celtech.com",
   phone: "+1 (415) 555-0142",
   phoneHref: "tel:+14155550142",
   address: {
     line1: "535 Mission Street, Floor 14",
     line2: "San Francisco, CA 94105",
-    // Used for the no-API-key Google Maps embed and the "Get directions" link.
     query: "535 Mission Street, San Francisco, CA 94105",
   },
   hours: "Mon–Fri · 9:00 AM – 6:00 PM PT",
@@ -25,10 +24,82 @@ export const site = {
   },
 } as const;
 
-export const nav = [
+export type NavItem = {
+  href: string;
+  label: string;
+  children?: { href: string; label: string; description?: string }[];
+};
+
+export const nav: NavItem[] = [
   { href: "/", label: "Home" },
-  { href: "/services", label: "Services" },
-  { href: "/work", label: "Work" },
-  { href: "/about", label: "About" },
+  {
+    href: "/services",
+    label: "Services",
+    children: [
+      {
+        href: "/services",
+        label: "All Services",
+        description: "Explore the full range of CELTech expertise.",
+      },
+      {
+        href: "/services/cloud-development",
+        label: "Cloud Development",
+        description: "Migration, optimization, and resilient infrastructure.",
+      },
+      {
+        href: "/services/software-engineering",
+        label: "Software Engineering",
+        description: "Full-stack product, platform, and API engineering.",
+      },
+      {
+        href: "/services/legacy-modernization",
+        label: "Legacy Modernization",
+        description: "Re-platform and refactor without the risk.",
+      },
+      {
+        href: "/services/data-ai",
+        label: "Data & AI",
+        description: "Data platforms and applied machine learning.",
+      },
+      {
+        href: "/services/devops-sre",
+        label: "DevOps & SRE",
+        description: "Automation, observability, and reliability.",
+      },
+    ],
+  },
+  { href: "/industries", label: "Industries" },
+  { href: "/case-studies", label: "Case Studies" },
+  {
+    href: "/company",
+    label: "Company",
+    children: [
+      {
+        href: "/company/about",
+        label: "About Us",
+        description: "Our story, vision, and mission.",
+      },
+      {
+        href: "/company/how-we-work",
+        label: "How We Work",
+        description: "The CELTech partnership model.",
+      },
+      {
+        href: "/company/careers",
+        label: "Careers",
+        description: "Find your next opportunity.",
+      },
+      {
+        href: "/company/insights",
+        label: "Insights",
+        description: "Ideas from our team.",
+      },
+      {
+        href: "/company/events",
+        label: "Events",
+        description: "Where to meet CELTech.",
+      },
+    ],
+  },
   { href: "/contact", label: "Contact" },
-] as const;
+];

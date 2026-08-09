@@ -11,7 +11,7 @@ export function MapEmbed({ className = "" }: { className?: string }) {
   const directions = `https://www.google.com/maps/dir/?api=1&destination=${query}`;
 
   return (
-    <div className={`overflow-hidden rounded-2xl border border-slate-900/10 ${className}`}>
+    <div className={`overflow-hidden rounded-2xl border border-line ${className}`}>
       <iframe
         title={`Map showing the ${site.name} office at ${site.address.line1}`}
         src={embedSrc}
@@ -20,15 +20,15 @@ export function MapEmbed({ className = "" }: { className?: string }) {
         className="h-full min-h-[320px] w-full"
         allowFullScreen
       />
-      <div className="flex items-center justify-between gap-3 bg-white px-4 py-3">
-        <p className="text-sm text-slate-600">
+      <div className="flex items-center justify-between gap-3 bg-card px-4 py-3">
+        <p className="text-sm text-body">
           {site.address.line1}, {site.address.line2}
         </p>
         <a
           href={directions}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm font-semibold text-brand-600 hover:text-brand-700"
+          className="text-sm font-semibold text-brand-600 hover:text-brand-500"
         >
           Get directions →
         </a>

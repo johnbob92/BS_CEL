@@ -7,18 +7,18 @@ import { ArrowRightIcon } from "@/components/icons";
 import { projects } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Work",
+  title: "Case Studies",
   description:
-    "Original, high-resolution looks at products CELTECH LLC has designed and engineered — with the outcomes that mattered.",
+    "See the teams CELTech LLC assembled and the measurable outcomes they delivered — from analytics platforms to mobile banking apps.",
 };
 
-export default function WorkPage() {
+export default function CaseStudiesPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Our work"
-        title="Products we designed, built, and shipped"
-        description="Every image here is from work we delivered — no stock mockups. Here's what we made and the results it drove."
+        eyebrow="Case studies"
+        title="The right people, real results"
+        description="A look at engagements where the professionals we placed made an immediate and lasting impact."
       />
 
       <section className="container-page py-16 md:py-24">
@@ -30,11 +30,11 @@ export default function WorkPage() {
                   i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
                 }`}
               >
-                <div className="overflow-hidden rounded-3xl border border-slate-900/10 shadow-[var(--shadow-soft)]">
+                <div className="overflow-hidden rounded-3xl border border-line shadow-[var(--shadow-soft)]">
                   <div className="relative aspect-[4/3]">
                     <Image
                       src={p.image}
-                      alt={`${p.title} — an original product built by CELTECH for ${p.client}`}
+                      alt={`${p.title} — delivered by a CELTech team for ${p.client}`}
                       fill
                       className="object-cover"
                       sizes="(max-width: 1024px) 100vw, 50vw"
@@ -45,15 +45,15 @@ export default function WorkPage() {
                   <p className="text-xs font-semibold uppercase tracking-wider text-brand-600">
                     {p.category} · {p.client}
                   </p>
-                  <h2 className="mt-2 text-2xl font-bold text-slate-900 sm:text-3xl">
+                  <h2 className="mt-2 text-2xl font-bold text-heading sm:text-3xl">
                     {p.title}
                   </h2>
-                  <p className="mt-4 text-slate-600">{p.summary}</p>
-                  <div className="mt-6 inline-flex items-center gap-3 rounded-xl bg-brand-50 px-4 py-3">
-                    <span className="text-sm font-semibold text-brand-800">
+                  <p className="mt-4 text-body">{p.summary}</p>
+                  <div className="mt-6 inline-flex items-center gap-3 rounded-xl bg-brandsoft px-4 py-3">
+                    <span className="text-sm font-semibold text-brandsoft-text">
                       Result
                     </span>
-                    <span className="text-sm text-slate-700">{p.result}</span>
+                    <span className="text-sm text-body">{p.result}</span>
                   </div>
                 </div>
               </div>
@@ -65,7 +65,7 @@ export default function WorkPage() {
       <section className="container-page pb-20">
         <Reveal className="flex flex-col items-center gap-6 rounded-3xl bg-gradient-to-br from-accent-600 to-brand-500 p-10 text-center">
           <h2 className="max-w-xl text-2xl font-bold text-white sm:text-3xl">
-            Your product could be the next case study.
+            Your team could be the next success story.
           </h2>
           <Link
             href="/contact"

@@ -23,17 +23,17 @@ export function ContactForm() {
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        className="flex h-full flex-col items-center justify-center rounded-2xl border border-brand-200 bg-brand-50 p-10 text-center"
+        className="flex h-full flex-col items-center justify-center rounded-2xl border border-line bg-brandsoft p-10 text-center"
       >
         <div className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-500 text-white">
           <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M20 6 9 17l-5-5" />
           </svg>
         </div>
-        <h3 className="mt-4 text-xl font-semibold text-slate-900">
+        <h3 className="mt-4 text-xl font-semibold text-heading">
           Thanks — we&apos;ll be in touch!
         </h3>
-        <p className="mt-2 max-w-sm text-sm text-slate-600">
+        <p className="mt-2 max-w-sm text-sm text-body">
           A member of our team will reply within one business day.
         </p>
         <button
@@ -68,7 +68,7 @@ export function ContactForm() {
         />
       </div>
       <label className="flex flex-col gap-2">
-        <span className="text-sm font-medium text-slate-700">
+        <span className="text-sm font-medium text-heading">
           How can we help?
         </span>
         <textarea
@@ -76,7 +76,7 @@ export function ContactForm() {
           required
           rows={5}
           placeholder="Tell us about your project, timeline, and goals."
-          className="rounded-xl border border-slate-900/10 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition-colors placeholder:text-slate-400 focus:border-brand-400 focus:ring-4 focus:ring-brand-100"
+          className="rounded-xl border border-line-strong bg-surface px-4 py-3 text-sm text-heading outline-none transition-colors placeholder:text-subtle focus:border-brand-400 focus:ring-4 focus:ring-brand-500/20"
         />
       </label>
       <button
@@ -107,7 +107,7 @@ function Field({
 }) {
   return (
     <label className="flex flex-col gap-2">
-      <span className="text-sm font-medium text-slate-700">
+      <span className="text-sm font-medium text-heading">
         {label}
         {required && <span className="text-brand-500"> *</span>}
       </span>
@@ -117,7 +117,7 @@ function Field({
         required={required}
         autoComplete={autoComplete}
         placeholder={placeholder}
-        className="rounded-xl border border-slate-900/10 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition-colors placeholder:text-slate-400 focus:border-brand-400 focus:ring-4 focus:ring-brand-100"
+        className="rounded-xl border border-line-strong bg-surface px-4 py-3 text-sm text-heading outline-none transition-colors placeholder:text-subtle focus:border-brand-400 focus:ring-4 focus:ring-brand-500/20"
       />
     </label>
   );

@@ -48,15 +48,15 @@ const highlights = [
 export function Reviews() {
   return (
     <div className="flex flex-col items-center gap-10">
-      <div className="flex flex-col items-center gap-3 rounded-2xl border border-slate-900/10 bg-white px-8 py-6 shadow-[var(--shadow-soft)]">
+      <div className="flex flex-col items-center gap-3 rounded-2xl border border-line bg-card px-8 py-6 shadow-[var(--shadow-soft)]">
         <div className="flex items-center gap-3">
           <GoogleIcon className="h-7 w-7" />
-          <span className="text-lg font-semibold text-slate-900">
+          <span className="text-lg font-semibold text-heading">
             Reviews on Google
           </span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-3xl font-bold text-slate-900">5.0</span>
+          <span className="text-3xl font-bold text-heading">5.0</span>
           <div className="flex text-amber-400" aria-label="5 out of 5 stars">
             {Array.from({ length: 5 }).map((_, i) => (
               <StarIcon key={i} className="h-5 w-5" />
@@ -67,7 +67,7 @@ export function Reviews() {
           href={googleReviewsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm font-semibold text-brand-600 hover:text-brand-700"
+          className="text-sm font-semibold text-brand-600 hover:text-brand-500"
         >
           Read verified reviews on Google →
         </a>
@@ -100,12 +100,12 @@ export function Reviews() {
                 </div>
                 <GoogleIcon className="h-5 w-5" />
               </div>
-              <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-slate-700">
+              <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-body">
                 “{r.quote}”
               </blockquote>
-              <figcaption className="mt-5 border-t border-slate-900/5 pt-4">
-                <p className="text-sm font-semibold text-slate-900">{r.name}</p>
-                <p className="text-xs text-slate-500">{r.role}</p>
+              <figcaption className="mt-5 border-t border-line pt-4">
+                <p className="text-sm font-semibold text-heading">{r.name}</p>
+                <p className="text-xs text-subtle">{r.role}</p>
               </figcaption>
             </motion.figure>
           ))}

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { nav, site } from "@/lib/site";
+import { site } from "@/lib/site";
 import { Logo } from "./Logo";
 import {
   FacebookIcon,
@@ -17,13 +17,45 @@ const socials = [
   { href: site.social.github, label: "GitHub", Icon: GitHubIcon },
 ];
 
+const columns = [
+  {
+    heading: "Services",
+    links: [
+      { href: "/services", label: "All Services" },
+      { href: "/services/cloud-development", label: "Cloud Development" },
+      { href: "/services/software-engineering", label: "Software Engineering" },
+      { href: "/services/legacy-modernization", label: "Legacy Modernization" },
+      { href: "/services/data-ai", label: "Data & AI" },
+      { href: "/services/devops-sre", label: "DevOps & SRE" },
+    ],
+  },
+  {
+    heading: "Company",
+    links: [
+      { href: "/company/about", label: "About Us" },
+      { href: "/company/how-we-work", label: "How We Work" },
+      { href: "/company/careers", label: "Careers" },
+      { href: "/company/insights", label: "Insights" },
+      { href: "/company/events", label: "Events" },
+    ],
+  },
+  {
+    heading: "Explore",
+    links: [
+      { href: "/industries", label: "Industries" },
+      { href: "/case-studies", label: "Case Studies" },
+      { href: "/contact", label: "Contact" },
+    ],
+  },
+];
+
 export function Footer() {
   return (
-    <footer className="mt-24 border-t border-slate-900/10 bg-slate-50">
-      <div className="container-page grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr]">
+    <footer className="mt-24 border-t border-line bg-surface-2">
+      <div className="container-page grid gap-10 py-14 lg:grid-cols-[1.6fr_1fr_1fr_1fr]">
         <div>
           <Logo />
-          <p className="mt-4 max-w-sm text-sm leading-relaxed text-slate-600">
+          <p className="mt-4 max-w-sm text-sm leading-relaxed text-body">
             {site.description}
           </p>
           <div className="mt-6 flex gap-3">
@@ -34,7 +66,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${site.shortName} on ${label}`}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-900/10 bg-white text-slate-600 transition-colors hover:border-brand-300 hover:text-brand-600"
+                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line-strong bg-card text-body transition-colors hover:border-brand-300 hover:text-brand-600"
               >
                 <Icon className="h-4 w-4" />
               </a>
@@ -42,58 +74,34 @@ export function Footer() {
           </div>
         </div>
 
-        <div>
-          <h3 className="text-sm font-semibold text-slate-900">Explore</h3>
-          <ul className="mt-4 space-y-3 text-sm">
-            {nav.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="text-slate-600 transition-colors hover:text-brand-600"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="text-sm font-semibold text-slate-900">Get in touch</h3>
-          <ul className="mt-4 space-y-3 text-sm text-slate-600">
-            <li>
-              <a
-                href={`mailto:${site.email}`}
-                className="transition-colors hover:text-brand-600"
-              >
-                {site.email}
-              </a>
-            </li>
-            <li>
-              <a
-                href={site.phoneHref}
-                className="transition-colors hover:text-brand-600"
-              >
-                {site.phone}
-              </a>
-            </li>
-            <li className="pt-1">
-              {site.address.line1}
-              <br />
-              {site.address.line2}
-            </li>
-            <li className="pt-1 text-slate-500">{site.hours}</li>
-          </ul>
-        </div>
+        {columns.map((col) => (
+          <div key={col.heading}>
+            <h3 className="text-sm font-semibold text-heading">
+              {col.heading}
+            </h3>
+            <ul className="mt-4 space-y-3 text-sm">
+              {col.links.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-body transition-colors hover:text-brand-600"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
 
-      <div className="border-t border-slate-900/10">
-        <div className="container-page flex flex-col items-center justify-between gap-3 py-6 text-xs text-slate-500 sm:flex-row">
+      <div className="border-t border-line">
+        <div className="container-page flex flex-col items-center justify-between gap-3 py-6 text-xs text-subtle sm:flex-row">
           <p>
             © {new Date().getFullYear()} {site.name}. All rights reserved.
           </p>
           <p>
-            Designed &amp; built in-house at {site.shortName}.
+            {site.address.line1}, {site.address.line2}
           </p>
         </div>
       </div>
