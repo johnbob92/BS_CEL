@@ -1,9 +1,17 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  // Produce a self-contained production build under .next/standalone
-  // that can run with `node server.js` without a full node_modules install.
-  output: "standalone",
-};
+// Set BUILD_EXPORT=1 to produce a fully static HTML export in `out/`
+// (real .html files for every route). Otherwise we build a self-contained
+// standalone server under .next/standalone (`node server.js`).
+const isExport = process.env.BUILD_EXPORT === "1";
+
+const nextConfig: NextConfig = isExport
+  ? {
+      output: "export",
+      images: { unoptimized: true },
+    }
+  : {
+      output: "standalone",
+    };
 
 export default nextConfig;
