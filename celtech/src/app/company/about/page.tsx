@@ -19,7 +19,7 @@ export default function AboutPage() {
       <PageHeader
         eyebrow="About us"
         title="Connecting the right talent, technology, and opportunities"
-        description="In a world where technology drives competitive advantage, having the right people is critical. CELTech LLC helps companies access the expertise they need and helps professionals grow meaningful careers."
+        description="In a world where technology drives competitive advantage, having the right people is critical. CELSTARTAB LLC helps companies access the expertise they need and helps professionals grow meaningful careers."
       />
 
       {/* Vision & mission */}
@@ -94,7 +94,7 @@ export default function AboutPage() {
       {/* Work environment */}
       <section className="container-page py-16 md:py-24">
         <SectionHeading
-          eyebrow="Inside CELTech"
+          eyebrow="Inside CELSTARTAB"
           title="Where the work happens"
           align="left"
           description="Our bright Taos, New Mexico studio is built for deep work and real collaboration."
@@ -118,7 +118,7 @@ export default function AboutPage() {
             <div className="relative aspect-[4/3] h-full">
               <Image
                 src="/images/work_pairing.png"
-                alt="Two CELTech engineers pair-programming at a standing desk"
+                alt="Two CELSTARTAB engineers pair-programming at a standing desk"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 40vw"
@@ -128,10 +128,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Why CELTech */}
+      {/* Why CELSTARTAB */}
       <section className="bg-surface-2 py-16 md:py-24">
         <div className="container-page">
-          <SectionHeading eyebrow="Why CELTech" title="What sets us apart" />
+          <SectionHeading eyebrow="Why CELSTARTAB" title="What sets us apart" />
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {differentiators.map((d, i) => (
               <Reveal key={d.title} delay={i * 0.06}>

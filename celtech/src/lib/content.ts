@@ -250,10 +250,10 @@ export const projects: Project[] = [
 
 export const team = [
   {
-    name: "Connor Ellison",
+    name: "Celeste Estelle Rex",
     role: "Founder & CEO",
-    image: "/images/person_ceo.png",
-    bio: "Two decades connecting engineering talent with the companies that need it. Connor leads strategy and client partnerships.",
+    image: "/images/person_owner.png",
+    bio: "Founder of CELSTARTAB LLC. Celeste connects exceptional engineering talent with the companies that need it and leads strategy and client partnerships.",
   },
   {
     name: "Sofia Marchetti",
@@ -449,7 +449,7 @@ export const insights = [
 
 export const events = [
   {
-    title: "CELTech Cloud Roundtable",
+    title: "CELSTARTAB Cloud Roundtable",
     date: "Sep 18, 2026",
     location: "Taos, NM",
     type: "In person",
@@ -484,7 +484,7 @@ export const termsSections: LegalSection[] = [
   {
     heading: "1. Agreement to terms",
     body: [
-      "These Terms of Service (“Terms”) govern your access to and use of the CELTech LLC website and any related services (collectively, the “Services”). By accessing or using the Services, you agree to be bound by these Terms. If you do not agree, please do not use the Services.",
+      "These Terms of Service (“Terms”) govern your access to and use of the CELSTARTAB LLC website and any related services (collectively, the “Services”). By accessing or using the Services, you agree to be bound by these Terms. If you do not agree, please do not use the Services.",
     ],
   },
   {
@@ -497,13 +497,13 @@ export const termsSections: LegalSection[] = [
   {
     heading: "3. Intellectual property",
     body: [
-      "The Services and their original content, features, and functionality are and will remain the exclusive property of CELTech LLC and its licensors. Our trademarks may not be used in connection with any product or service without our prior written consent.",
+      "The Services and their original content, features, and functionality are and will remain the exclusive property of CELSTARTAB LLC and its licensors. Our trademarks may not be used in connection with any product or service without our prior written consent.",
     ],
   },
   {
     heading: "4. Talent and consulting engagements",
     body: [
-      "Any placement, staffing, or consulting engagement is governed by a separate written agreement between CELTech LLC and the relevant client or professional. These Terms do not create any employment, agency, or partnership relationship on their own.",
+      "Any placement, staffing, or consulting engagement is governed by a separate written agreement between CELSTARTAB LLC and the relevant client or professional. These Terms do not create any employment, agency, or partnership relationship on their own.",
     ],
   },
   {
@@ -515,7 +515,7 @@ export const termsSections: LegalSection[] = [
   {
     heading: "6. Limitation of liability",
     body: [
-      "To the fullest extent permitted by law, CELTech LLC shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or relating to your use of the Services.",
+      "To the fullest extent permitted by law, CELSTARTAB LLC shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or relating to your use of the Services.",
     ],
   },
   {
@@ -536,7 +536,7 @@ export const privacySections: LegalSection[] = [
   {
     heading: "1. Introduction",
     body: [
-      "This Privacy Policy explains how CELTech LLC (“we,” “us,” or “our”) collects, uses, and protects information when you use our website and services. We are committed to handling your data responsibly and transparently.",
+      "This Privacy Policy explains how CELSTARTAB LLC (“we,” “us,” or “our”) collects, uses, and protects information when you use our website and services. We are committed to handling your data responsibly and transparently.",
     ],
   },
   {

@@ -58,7 +58,7 @@ export default async function ServiceDetailPage({ params }: Params) {
             <div className="relative aspect-[4/3]">
               <Image
                 src={service.image}
-                alt={`${service.title} work by a CELTech team`}
+                alt={`${service.title} work by a CELSTARTAB team`}
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 50vw"

@@ -10,7 +10,7 @@ import { industries } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Industries",
   description:
-    "CELTech LLC supports organizations across financial services, healthcare, retail, technology, energy, and the public sector with specialized technology talent.",
+    "CELSTARTAB LLC supports organizations across financial services, healthcare, retail, technology, energy, and the public sector with specialized technology talent.",
 };
 
 export default function IndustriesPage() {

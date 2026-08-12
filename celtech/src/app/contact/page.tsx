@@ -5,6 +5,7 @@ import { MapEmbed } from "@/components/MapEmbed";
 import { ContactForm } from "@/components/ContactForm";
 import {
   FacebookIcon,
+  GitHubIcon,
   InstagramIcon,
   LinkedInIcon,
   XIcon,
@@ -16,12 +17,20 @@ export const metadata: Metadata = {
   description: `Get in touch with ${site.name}. Visit our office in Taos, NM, send a message, or connect with us on social media.`,
 };
 
-const socials = [
-  { href: site.social.linkedin, label: "LinkedIn", Icon: LinkedInIcon },
-  { href: site.social.instagram, label: "Instagram", Icon: InstagramIcon },
-  { href: site.social.facebook, label: "Facebook", Icon: FacebookIcon },
-  { href: site.social.x, label: "X", Icon: XIcon },
-];
+const socialIcons: Record<
+  string,
+  { label: string; Icon: typeof LinkedInIcon }
+> = {
+  linkedin: { label: "LinkedIn", Icon: LinkedInIcon },
+  instagram: { label: "Instagram", Icon: InstagramIcon },
+  facebook: { label: "Facebook", Icon: FacebookIcon },
+  x: { label: "X", Icon: XIcon },
+  github: { label: "GitHub", Icon: GitHubIcon },
+};
+
+const socials = Object.entries(site.social)
+  .filter(([key]) => key in socialIcons)
+  .map(([key, href]) => ({ href, ...socialIcons[key] }));
 
 export default function ContactPage() {
   return (
@@ -73,20 +82,22 @@ export default function ContactPage() {
                 </div>
               </dl>
 
-              <div className="mt-6 flex gap-3 border-t border-line pt-6">
-                {socials.map(({ href, label, Icon }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${site.shortName} on ${label}`}
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line-strong bg-card text-body transition-colors hover:border-brand-300 hover:text-brand-600"
-                  >
-                    <Icon className="h-4 w-4" />
-                  </a>
-                ))}
-              </div>
+              {socials.length > 0 && (
+                <div className="mt-6 flex gap-3 border-t border-line pt-6">
+                  {socials.map(({ href, label, Icon }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${site.shortName} on ${label}`}
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line-strong bg-card text-body transition-colors hover:border-brand-300 hover:text-brand-600"
+                    >
+                      <Icon className="h-4 w-4" />
+                    </a>
+                  ))}
+                </div>
+              )}
             </div>
 
             <MapEmbed className="flex-1" />

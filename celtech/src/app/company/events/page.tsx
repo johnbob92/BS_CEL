@@ -9,7 +9,7 @@ import { events } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Events",
   description:
-    "Where to meet CELTech LLC — roundtables, webinars, and meetups for engineering leaders and technology professionals.",
+    "Where to meet CELSTARTAB LLC — roundtables, webinars, and meetups for engineering leaders and technology professionals.",
 };
 
 export default function EventsPage() {
@@ -17,7 +17,7 @@ export default function EventsPage() {
     <>
       <PageHeader
         eyebrow="Events"
-        title="Where to meet CELTech"
+        title="Where to meet CELSTARTAB"
         description="We host and attend gatherings for engineering leaders and technology professionals. Come say hello."
       />
 
@@ -26,7 +26,7 @@ export default function EventsPage() {
           <div className="relative aspect-[16/6]">
             <Image
               src="/images/events.png"
-              alt="A CELTech technology event"
+              alt="A CELSTARTAB technology event"
               fill
               priority
               className="object-cover"

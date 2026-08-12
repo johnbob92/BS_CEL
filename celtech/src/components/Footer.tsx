@@ -12,13 +12,20 @@ import {
   XIcon,
 } from "./icons";
 
-const socials = [
-  { href: site.social.linkedin, label: "LinkedIn", Icon: LinkedInIcon },
-  { href: site.social.instagram, label: "Instagram", Icon: InstagramIcon },
-  { href: site.social.facebook, label: "Facebook", Icon: FacebookIcon },
-  { href: site.social.x, label: "X", Icon: XIcon },
-  { href: site.social.github, label: "GitHub", Icon: GitHubIcon },
-];
+const socialIcons: Record<
+  string,
+  { label: string; Icon: typeof LinkedInIcon }
+> = {
+  linkedin: { label: "LinkedIn", Icon: LinkedInIcon },
+  instagram: { label: "Instagram", Icon: InstagramIcon },
+  facebook: { label: "Facebook", Icon: FacebookIcon },
+  x: { label: "X", Icon: XIcon },
+  github: { label: "GitHub", Icon: GitHubIcon },
+};
+
+const socials = Object.entries(site.social)
+  .filter(([key]) => key in socialIcons)
+  .map(([key, href]) => ({ href, ...socialIcons[key] }));
 
 const columns = [
   {
@@ -91,20 +98,22 @@ export function Footer() {
             </li>
           </ul>
 
-          <div className="mt-6 flex gap-3">
-            {socials.map(({ href, label, Icon }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${site.shortName} on ${label}`}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line-strong bg-card text-body transition-colors hover:border-brand-300 hover:text-brand-600"
-              >
-                <Icon className="h-4 w-4" />
-              </a>
-            ))}
-          </div>
+          {socials.length > 0 && (
+            <div className="mt-6 flex gap-3">
+              {socials.map(({ href, label, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${site.shortName} on ${label}`}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line-strong bg-card text-body transition-colors hover:border-brand-300 hover:text-brand-600"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              ))}
+            </div>
+          )}
         </div>
 
         {columns.map((col) => (

@@ -9,7 +9,7 @@ import { servicesDetail, techFocus } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "CELTech LLC connects organizations with expertise across cloud development, software engineering, legacy modernization, data & AI, and DevOps & SRE.",
+    "CELSTARTAB LLC connects organizations with expertise across cloud development, software engineering, legacy modernization, data & AI, and DevOps & SRE.",
 };
 
 export default function ServicesPage() {
