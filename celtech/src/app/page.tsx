@@ -264,7 +264,6 @@ export default function HomePage() {
         <div className="container-page">
           <SectionHeading
             eyebrow="Testimonials"
-            title="Don't just take our word for it"
             description="What early clients say about partnering with CELSTARTAB."
           />
           <div className="mt-14">

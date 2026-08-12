@@ -17,7 +17,7 @@ export function SectionHeading({
   align = "center",
 }: {
   eyebrow?: string;
-  title: ReactNode;
+  title?: ReactNode;
   description?: ReactNode;
   align?: "center" | "left";
 }) {
@@ -28,9 +28,11 @@ export function SectionHeading({
       }`}
     >
       {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-      <h2 className="max-w-2xl text-3xl font-bold text-heading sm:text-4xl">
-        {title}
-      </h2>
+      {title && (
+        <h2 className="max-w-2xl text-3xl font-bold text-heading sm:text-4xl">
+          {title}
+        </h2>
+      )}
       {description && (
         <p className="max-w-2xl text-base leading-relaxed text-body">
           {description}

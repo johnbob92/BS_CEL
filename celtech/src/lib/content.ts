@@ -250,7 +250,7 @@ export const projects: Project[] = [
 
 export const team = [
   {
-    name: "Celeste Estelle Rex",
+    name: "Celeste Rex",
     role: "Founder & CEO",
     image: "/images/person_owner.png",
     bio: "Founder of CELSTARTAB LLC. Celeste connects exceptional engineering talent with the companies that need it and leads strategy and client partnerships.",
