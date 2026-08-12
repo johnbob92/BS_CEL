@@ -1,5 +1,5 @@
-CELTech LLC — Offline site (double-click to open)
-=================================================
+CELSTARTAB LLC — Offline site (double-click to open)
+====================================================
 
 No server needed. Just double-click "index.html" and it opens in your browser,
 fully styled, with images, working navigation between pages, and the light/dark
