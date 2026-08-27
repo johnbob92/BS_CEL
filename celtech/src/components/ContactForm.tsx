@@ -1,159 +1,64 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { useState } from "react";
 import { site } from "@/lib/site";
 
-type Status = "idle" | "submitting" | "success" | "error";
-
-// Configure a free access key (https://web3forms.com) tied to the business
-// inbox to actually deliver submissions — including the attached résumé — by
-// email. Without it, the form falls back to opening the visitor's mail app.
-const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
-const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
+// FormSubmit (https://formsubmit.co) is a free, no-API-key relay that emails
+// each submission — including the attached résumé — straight to the inbox.
+// It requires a one-time activation: the first submission triggers a
+// "Confirm your email" message to the address below; click it once and all
+// future submissions (with attachments) are delivered.
+//
+// Override the endpoint with NEXT_PUBLIC_FORM_ENDPOINT (e.g. FormSubmit's
+// random-alias URL) to keep the raw address out of the page source.
+const FORM_ENDPOINT =
+  process.env.NEXT_PUBLIC_FORM_ENDPOINT ??
+  `https://formsubmit.co/${site.email}`;
+// Optional absolute URL to return to after sending (FormSubmit `_next`).
+const FORM_REDIRECT = process.env.NEXT_PUBLIC_FORM_REDIRECT;
 const MAX_FILE_BYTES = 5 * 1024 * 1024;
 
 export function ContactForm() {
-  const formRef = useRef<HTMLFormElement>(null);
-  const [status, setStatus] = useState<Status>("idle");
+  const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [fileName, setFileName] = useState<string | null>(null);
-  const [mailtoMode, setMailtoMode] = useState(false);
 
-  function reset() {
-    setStatus("idle");
-    setError(null);
-    setFileName(null);
-    setMailtoMode(false);
-    formRef.current?.reset();
-  }
-
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (status === "submitting") return;
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     const form = e.currentTarget;
-    const data = new FormData(form);
-
-    const file = data.get("resume");
-    if (file instanceof File && file.size > MAX_FILE_BYTES) {
+    const input = form.elements.namedItem("resume") as HTMLInputElement | null;
+    const file = input?.files?.[0];
+    if (file && file.size > MAX_FILE_BYTES) {
+      e.preventDefault();
       setError("Please attach a résumé under 5 MB.");
-      setStatus("error");
       return;
     }
-
-    setStatus("submitting");
     setError(null);
-
-    // Preferred path: send everything (incl. the résumé file) by email.
-    if (WEB3FORMS_KEY) {
-      try {
-        const res = await fetch(WEB3FORMS_ENDPOINT, {
-          method: "POST",
-          body: data,
-        });
-        const json = await res.json().catch(() => ({}));
-        if (res.ok && json.success !== false) {
-          setStatus("success");
-          form.reset();
-          setFileName(null);
-          return;
-        }
-        setError(json.message || "Something went wrong. Please try again.");
-        setStatus("error");
-        return;
-      } catch {
-        setError(
-          "We couldn't reach the mail service. Please email us directly at " +
-            site.email +
-            ".",
-        );
-        setStatus("error");
-        return;
-      }
-    }
-
-    // Fallback: open the visitor's email client with the details prefilled.
-    const get = (k: string) => String(data.get(k) ?? "").trim();
-    const body = [
-      `Name: ${get("name")}`,
-      `Email: ${get("email")}`,
-      `Phone Number: ${get("phone")}`,
-      `Budget: ${get("budget")}`,
-      "",
-      "About:",
-      get("message"),
-      "",
-      file instanceof File && file.name
-        ? `(Please attach your résumé "${file.name}" to this email.)`
-        : "",
-    ].join("\n");
-    const href = `mailto:${site.email}?subject=${encodeURIComponent(
-      "Website inquiry from " + (get("name") || "a visitor"),
-    )}&body=${encodeURIComponent(body)}`;
-    window.location.href = href;
-    setMailtoMode(true);
-    setStatus("success");
-  }
-
-  if (status === "success") {
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="flex h-full flex-col items-center justify-center rounded-2xl border border-line bg-brandsoft p-10 text-center"
-      >
-        <div className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-500 text-white">
-          <svg
-            viewBox="0 0 24 24"
-            className="h-7 w-7"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M20 6 9 17l-5-5" />
-          </svg>
-        </div>
-        <h3 className="mt-4 text-xl font-semibold text-heading">
-          {mailtoMode ? "Almost there!" : "Thanks — we'll be in touch!"}
-        </h3>
-        <p className="mt-2 max-w-sm text-sm text-body">
-          {mailtoMode
-            ? `Your email app should have opened with the details. Please attach your résumé and hit send — or email us at ${site.email}.`
-            : "A member of our team will reply within one business day."}
-        </p>
-        <button type="button" onClick={reset} className="btn btn-ghost mt-6">
-          Send another message
-        </button>
-      </motion.div>
-    );
+    setSubmitting(true);
+    // No preventDefault: the browser performs a native multipart POST to
+    // FormSubmit so the résumé file is included and emailed as an attachment.
   }
 
   return (
     <form
-      ref={formRef}
-      onSubmit={handleSubmit}
-      action={WEB3FORMS_KEY ? WEB3FORMS_ENDPOINT : undefined}
+      action={FORM_ENDPOINT}
       method="POST"
       encType="multipart/form-data"
+      onSubmit={handleSubmit}
       className="grid gap-5"
     >
-      {WEB3FORMS_KEY && (
-        <>
-          <input type="hidden" name="access_key" value={WEB3FORMS_KEY} />
-          <input
-            type="hidden"
-            name="subject"
-            value="New inquiry from the CELSTARTAB website"
-          />
-          <input type="hidden" name="from_name" value={site.name} />
-        </>
-      )}
-      {/* Honeypot spam trap (kept off-screen) */}
       <input
-        type="checkbox"
-        name="botcheck"
+        type="hidden"
+        name="_subject"
+        value="New inquiry from the CELSTARTAB website"
+      />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_captcha" value="false" />
+      {FORM_REDIRECT && (
+        <input type="hidden" name="_next" value={FORM_REDIRECT} />
+      )}
+      {/* Honeypot spam trap (bots fill it; FormSubmit then drops the message) */}
+      <input
+        type="text"
+        name="_honey"
         tabIndex={-1}
         autoComplete="off"
         className="hidden"
@@ -185,7 +90,7 @@ export function ContactForm() {
         />
       </div>
 
-      {/* Résumé / CV upload */}
+      {/* Résumé / CV upload — no selected filename is displayed */}
       <label className="flex flex-col gap-2">
         <span className="text-sm font-medium text-heading">
           Résumé / CV{" "}
@@ -201,13 +106,10 @@ export function ContactForm() {
               name="resume"
               accept=".pdf,.doc,.docx,.rtf,.txt"
               className="hidden"
-              onChange={(e) =>
-                setFileName(e.currentTarget.files?.[0]?.name ?? null)
-              }
             />
           </label>
           <span className="truncate text-sm text-subtle">
-            {fileName ?? "PDF, DOC, DOCX · up to 5 MB"}
+            PDF, DOC, DOCX · up to 5 MB
           </span>
         </div>
       </label>
@@ -225,7 +127,7 @@ export function ContactForm() {
         />
       </label>
 
-      {status === "error" && error && (
+      {error && (
         <p className="rounded-lg bg-red-500/10 px-4 py-3 text-sm text-red-500">
           {error}
         </p>
@@ -233,10 +135,10 @@ export function ContactForm() {
 
       <button
         type="submit"
-        disabled={status === "submitting"}
+        disabled={submitting}
         className="btn btn-primary w-full disabled:cursor-not-allowed disabled:opacity-70"
       >
-        {status === "submitting" ? "Sending…" : "Send message"}
+        {submitting ? "Sending…" : "Send message"}
       </button>
     </form>
   );
