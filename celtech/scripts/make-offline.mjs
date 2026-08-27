@@ -17,14 +17,6 @@ import path from "node:path";
 const root = path.resolve(process.argv[2] || "out");
 
 const ASSET_PREFIXES = ["_next", "images"];
-const ASSET_FILES = [
-  "favicon.ico",
-  "file.svg",
-  "globe.svg",
-  "next.svg",
-  "vercel.svg",
-  "window.svg",
-];
 
 const toggleScript = `<script>(function(){function cur(){try{return localStorage.getItem('celtech-theme')||'auto'}catch(e){return 'auto'}}function night(){var h=new Date().getHours();return h>=19||h<7}function apply(t){document.documentElement.classList.toggle('dark',t==='dark'||(t==='auto'&&night()));}apply(cur());document.addEventListener('click',function(e){var b=e.target&&e.target.closest?e.target.closest('button[aria-label^="Theme"]'):null;if(!b)return;var o=['auto','light','dark'];var n=o[(o.indexOf(cur())+1)%3];try{localStorage.setItem('celtech-theme',n)}catch(e){}apply(n);});})();</script>`;
 
@@ -57,16 +49,21 @@ async function transformHtml(file) {
   for (const p of ASSET_PREFIXES) {
     html = html.replaceAll(`"/${p}/`, `"${prefix}${p}/`);
   }
-  // 2) Root-level asset files -> relative (may carry a ?query)
-  for (const f of ASSET_FILES) {
-    html = html.replaceAll(`"/${f}`, `"${prefix}${f}`);
-  }
 
-  // 3) Internal route links -> relative .html (depth-aware)
+  // 2) Any root-absolute file reference WITH an extension (favicon.ico,
+  //    icon.svg, *.png, *.woff2, etc.) -> relative. Route links have no
+  //    file extension and are handled in step 3.
+  html = html.replace(
+    /(href|src)="\/([^"?#]+\.[a-z0-9]+)((?:\?[^"]*)?)"/gi,
+    (m, attr, p, q = "") => `${attr}="${prefix}${p}${q || ""}"`,
+  );
+
+  // 3) Internal route links (extensionless) -> relative .html (depth-aware)
   html = html.replace(
     /href="(\/[^"?#]*)((?:[?#][^"]*)?)"/g,
     (m, route, suffix = "") => {
       if (route.startsWith("/_next") || route.startsWith("/images")) return m;
+      if (/\.[a-z0-9]+$/i.test(route)) return m; // skip files with extensions
       const target = route === "/" ? "index.html" : route.slice(1) + ".html";
       return `href="${prefix}${target}${suffix || ""}"`;
     },
