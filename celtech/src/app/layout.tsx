@@ -43,7 +43,6 @@ export const metadata: Metadata = {
     images: [{ url: "/images/team_group.png", width: 1200, height: 675 }],
     type: "website",
   },
-  icons: { icon: "/favicon.ico" },
 };
 
 // Runs before paint to set the theme class and avoid a flash of the wrong theme.

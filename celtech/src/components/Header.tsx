@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { nav, type NavItem } from "@/lib/site";
 import { Logo } from "./Logo";
@@ -15,17 +15,8 @@ function isActive(pathname: string, href: string) {
 
 export function Header() {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileSection, setMobileSection] = useState<string | null>(null);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   function closeMobile() {
     setOpen(false);
@@ -33,25 +24,15 @@ export function Header() {
   }
 
   return (
-    <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "border-b border-line bg-[var(--nav-bg)] backdrop-blur-xl"
-          : "border-b border-transparent"
-      }`}
-    >
+    // Background is always present (not scroll-dependent) so page content never
+    // shows through the bar — this also works in the no-JS static build.
+    <header className="sticky top-0 z-50 border-b border-line bg-[var(--nav-bg)] shadow-[0_1px_0_0_var(--color-line)] backdrop-blur-xl">
       <div className="container-page flex h-16 items-center justify-between gap-4 md:h-20">
         <Logo />
 
         <nav className="hidden items-center gap-0.5 lg:flex">
           {nav.map((item) => (
-            <DesktopNavItem
-              key={item.href}
-              item={item}
-              pathname={pathname}
-              openMenu={openMenu}
-              setOpenMenu={setOpenMenu}
-            />
+            <DesktopNavItem key={item.href} item={item} pathname={pathname} />
           ))}
         </nav>
 
@@ -180,13 +161,9 @@ export function Header() {
 function DesktopNavItem({
   item,
   pathname,
-  openMenu,
-  setOpenMenu,
 }: {
   item: NavItem;
   pathname: string;
-  openMenu: string | null;
-  setOpenMenu: (v: string | null) => void;
 }) {
   const active = isActive(pathname, item.href);
 
@@ -195,48 +172,31 @@ function DesktopNavItem({
       <Link
         href={item.href}
         className={`relative rounded-full px-3.5 py-2 text-sm font-medium transition-colors ${
-          active ? "text-brand-600" : "text-body hover:text-heading"
+          active
+            ? "bg-brandsoft text-brand-600"
+            : "text-body hover:text-heading"
         }`}
       >
-        {active && (
-          <motion.span
-            layoutId="nav-active"
-            className="absolute inset-0 -z-10 rounded-full bg-brandsoft"
-            transition={{ type: "spring", stiffness: 380, damping: 30 }}
-          />
-        )}
         {item.label}
       </Link>
     );
   }
 
-  const isOpen = openMenu === item.href;
-
+  // CSS-only dropdown (hover + keyboard focus) so it also works without JS.
   return (
-    <div
-      className="relative"
-      onMouseEnter={() => setOpenMenu(item.href)}
-      onMouseLeave={() => setOpenMenu(null)}
-    >
+    <div className="group relative">
       <Link
         href={item.href}
-        onFocus={() => setOpenMenu(item.href)}
-        aria-expanded={isOpen}
         className={`relative flex items-center gap-1 rounded-full px-3.5 py-2 text-sm font-medium transition-colors ${
-          active ? "text-brand-600" : "text-body hover:text-heading"
+          active
+            ? "bg-brandsoft text-brand-600"
+            : "text-body hover:text-heading"
         }`}
       >
-        {active && (
-          <motion.span
-            layoutId="nav-active"
-            className="absolute inset-0 -z-10 rounded-full bg-brandsoft"
-            transition={{ type: "spring", stiffness: 380, damping: 30 }}
-          />
-        )}
         {item.label}
         <svg
           viewBox="0 0 24 24"
-          className={`h-3.5 w-3.5 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+          className="h-3.5 w-3.5 transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180"
           fill="none"
           stroke="currentColor"
           strokeWidth="2.2"
@@ -246,36 +206,26 @@ function DesktopNavItem({
         </svg>
       </Link>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 8 }}
-            transition={{ duration: 0.18, ease: "easeOut" }}
-            className="absolute left-1/2 top-full z-50 w-80 -translate-x-1/2 pt-3"
-          >
-            <div className="overflow-hidden rounded-2xl border border-line bg-card p-2 shadow-[var(--shadow-lift)]">
-              {item.children.map((child) => (
-                <Link
-                  key={child.href}
-                  href={child.href}
-                  className="block rounded-xl px-4 py-3 transition-colors hover:bg-brandsoft"
-                >
-                  <span className="block text-sm font-semibold text-heading">
-                    {child.label}
-                  </span>
-                  {child.description && (
-                    <span className="mt-0.5 block text-xs text-subtle">
-                      {child.description}
-                    </span>
-                  )}
-                </Link>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <div className="invisible absolute left-1/2 top-full z-50 w-80 -translate-x-1/2 translate-y-1 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+        <div className="overflow-hidden rounded-2xl border border-line bg-card p-2 shadow-[var(--shadow-lift)]">
+          {item.children.map((child) => (
+            <Link
+              key={child.href}
+              href={child.href}
+              className="block rounded-xl px-4 py-3 transition-colors hover:bg-brandsoft"
+            >
+              <span className="block text-sm font-semibold text-heading">
+                {child.label}
+              </span>
+              {child.description && (
+                <span className="mt-0.5 block text-xs text-subtle">
+                  {child.description}
+                </span>
+              )}
+            </Link>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
