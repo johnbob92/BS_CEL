@@ -68,7 +68,7 @@ export default function HomePage() {
         <SectionHeading
           eyebrow="One bridge, two directions"
           title="The right talent, the right technology, the right opportunities"
-          description="Whether you're building a team or building your career, CELTech creates the connection."
+          description="Whether you're building a team or building your career, CELSTARTAB creates the connection."
         />
         <div className="mt-14 grid gap-6 lg:grid-cols-2">
           <Reveal>
@@ -167,10 +167,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Why CELTech */}
+      {/* Why CELSTARTAB */}
       <section className="container-page py-20 md:py-28">
         <SectionHeading
-          eyebrow="Why CELTech"
+          eyebrow="Why CELSTARTAB"
           title="More than talent matching"
           description="Our approach goes beyond filling roles. We build partnerships designed to last."
         />
@@ -238,7 +238,7 @@ export default function HomePage() {
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
                     src={p.image}
-                    alt={`${p.title} delivered by a CELTech team for ${p.client}`}
+                    alt={`${p.title} delivered by a CELSTARTAB team for ${p.client}`}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, 33vw"
@@ -263,9 +263,8 @@ export default function HomePage() {
       <section className="bg-surface-2 py-20 md:py-28">
         <div className="container-page">
           <SectionHeading
-            eyebrow="Client reviews"
-            title="Don't just take our word for it"
-            description="Live, verified reviews from the teams we've partnered with — straight from Google."
+            eyebrow="Testimonials"
+            description="What early clients say about partnering with CELSTARTAB."
           />
           <div className="mt-14">
             <Reviews />
@@ -284,7 +283,7 @@ export default function HomePage() {
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-white/90">
               Whether you&apos;re looking for exceptional technology talent or
-              your next career opportunity, CELTech is here to help create the
+              your next career opportunity, CELSTARTAB is here to help create the
               connection.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">

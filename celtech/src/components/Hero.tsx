@@ -71,9 +71,9 @@ export function Hero() {
             className="mt-12 grid max-w-md grid-cols-3 gap-6"
           >
             {[
-              { k: "500+", v: "Vetted professionals" },
-              { k: "40+", v: "Client partners" },
-              { k: "4.9★", v: "Avg. rating" },
+              { k: "20+", v: "Specialists in network" },
+              { k: "10+", v: "Client partners" },
+              { k: "4.9★", v: "Client rating" },
             ].map((s) => (
               <div key={s.v}>
                 <dt className="text-2xl font-bold text-heading">{s.k}</dt>
@@ -92,7 +92,7 @@ export function Hero() {
           <div className="relative overflow-hidden rounded-3xl border border-line shadow-[var(--shadow-lift)]">
             <Image
               src="/images/hero_team.png"
-              alt="CELTech technology professionals collaborating in a bright modern office"
+              alt="CELSTARTAB technology professionals collaborating in a bright modern office"
               width={1280}
               height={720}
               priority

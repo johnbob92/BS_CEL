@@ -37,13 +37,13 @@ const sections = [
     href: "/company/insights",
     label: "Insights",
     image: "/images/insights.png",
-    description: "Ideas and perspectives from the CELTech team.",
+    description: "Ideas and perspectives from the CELSTARTAB team.",
   },
   {
     href: "/company/events",
     label: "Events",
     image: "/images/events.png",
-    description: "Where to meet CELTech in person and online.",
+    description: "Where to meet CELSTARTAB in person and online.",
   },
 ];
 

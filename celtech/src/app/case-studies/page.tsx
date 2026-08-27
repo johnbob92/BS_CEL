@@ -9,7 +9,7 @@ import { projects } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Case Studies",
   description:
-    "See the teams CELTech LLC assembled and the measurable outcomes they delivered — from analytics platforms to mobile banking apps.",
+    "See the teams CELSTARTAB LLC assembled and the measurable outcomes they delivered — from analytics platforms to mobile banking apps.",
 };
 
 export default function CaseStudiesPage() {
@@ -34,7 +34,7 @@ export default function CaseStudiesPage() {
                   <div className="relative aspect-[4/3]">
                     <Image
                       src={p.image}
-                      alt={`${p.title} — delivered by a CELTech team for ${p.client}`}
+                      alt={`${p.title} — delivered by a CELSTARTAB team for ${p.client}`}
                       fill
                       className="object-cover"
                       sizes="(max-width: 1024px) 100vw, 50vw"

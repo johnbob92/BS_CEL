@@ -9,7 +9,7 @@ import { insights } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Insights",
   description:
-    "Ideas and perspectives from the CELTech team on talent, cloud, modernization, and applied AI.",
+    "Ideas and perspectives from the CELSTARTAB team on talent, cloud, modernization, and applied AI.",
 };
 
 export default function InsightsPage() {

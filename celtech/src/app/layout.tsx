@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     "DevOps",
     "staff augmentation",
     "digital transformation",
-    "CELTech",
+    "CELSTARTAB",
   ],
   openGraph: {
     title: `${site.name} — ${site.tagline}`,

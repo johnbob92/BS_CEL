@@ -10,7 +10,7 @@ import { forProfessionals, openRoles } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Careers",
   description:
-    "Find opportunities where your skills matter. CELTech LLC connects talented engineers with companies where they can grow.",
+    "Find opportunities where your skills matter. CELSTARTAB LLC connects talented engineers with companies where they can grow.",
 };
 
 export default function CareersPage() {
@@ -38,7 +38,7 @@ export default function CareersPage() {
           </Reveal>
           <Reveal delay={0.08}>
             <h2 className="text-2xl font-bold text-heading sm:text-3xl">
-              Why join the CELTech network
+              Why join the CELSTARTAB network
             </h2>
             <ul className="mt-6 space-y-3">
               {forProfessionals.map((f) => (

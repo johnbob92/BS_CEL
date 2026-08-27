@@ -10,7 +10,7 @@ import { processSteps } from "@/lib/content";
 export const metadata: Metadata = {
   title: "How We Work",
   description:
-    "The CELTech partnership model: understand, match, deliver, and grow — with quality and transparency at every step.",
+    "The CELSTARTAB partnership model: understand, match, deliver, and grow — with quality and transparency at every step.",
 };
 
 const engagementModels = [
@@ -42,7 +42,7 @@ export default function HowWeWorkPage() {
           <div className="relative aspect-[16/6]">
             <Image
               src="/images/how_we_work.png"
-              alt="A CELTech team collaborating around a whiteboard"
+              alt="A CELSTARTAB team collaborating around a whiteboard"
               fill
               priority
               className="object-cover"

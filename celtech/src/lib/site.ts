@@ -1,29 +1,26 @@
 export const site = {
-  name: "CELTech LLC",
-  shortName: "CELTech",
+  name: "CELSTARTAB LLC",
+  shortName: "CELSTARTAB",
   domain: "celtech.com",
   url: "https://celtech.com",
   tagline: "The bridge between technical excellence and business innovation",
   description:
-    "CELTech LLC connects outstanding technology professionals with organizations building the future — helping companies access the engineering expertise they need and helping professionals grow meaningful careers.",
-  email: "admin@celtech.com",
-  phone: "+1 (505) 234-2345",
-  phoneHref: "tel:+15052342345",
+    "CELSTARTAB LLC connects outstanding technology professionals with organizations building the future — helping companies access the engineering expertise they need and helping professionals grow meaningful careers.",
+  owner: "Celeste Rex",
+  email: "rexceleste04@outlook.com",
+  phone: "+1 (830) 851-5152",
+  phoneHref: "tel:+18308515152",
   address: {
-    line1: "Treetop Ln",
-    line2: "Taos, NM 87571, USA",
-    query: "Treetop Ln, Taos, NM 87571",
+    line1: "2030 Tanner Ln",
+    line2: "Billings, MT 59102, USA",
+    query: "2030 Tanner Ln, Billings, MT 59102",
   },
   hours: "Mon–Fri · 9:00 AM – 6:00 PM MT",
   summary:
-    "CELTech LLC is a software consulting company that connects outstanding technology professionals with organizations building the future. We help companies access engineering excellence and help professionals grow meaningful careers.",
-  social: {
-    linkedin: "https://www.linkedin.com/company/celtech",
-    instagram: "https://www.instagram.com/celtech",
-    facebook: "https://www.facebook.com/celtech",
-    x: "https://x.com/celtech",
-    github: "https://github.com/celtech",
-  },
+    "CELSTARTAB LLC is a software consulting company that connects outstanding technology professionals with organizations building the future. We help companies access engineering excellence and help professionals grow meaningful careers.",
+  // No public social profiles are verified for this business yet.
+  // Add real profile URLs here (e.g. linkedin) to show social links again.
+  social: {} as Record<string, string>,
 } as const;
 
 export type NavItem = {
@@ -41,7 +38,7 @@ export const nav: NavItem[] = [
       {
         href: "/services",
         label: "All Services",
-        description: "Explore the full range of CELTech expertise.",
+        description: "Explore the full range of CELSTARTAB expertise.",
       },
       {
         href: "/services/cloud-development",
@@ -84,7 +81,7 @@ export const nav: NavItem[] = [
       {
         href: "/company/how-we-work",
         label: "How We Work",
-        description: "The CELTech partnership model.",
+        description: "The CELSTARTAB partnership model.",
       },
       {
         href: "/company/careers",
@@ -99,7 +96,7 @@ export const nav: NavItem[] = [
       {
         href: "/company/events",
         label: "Events",
-        description: "Where to meet CELTech.",
+        description: "Where to meet CELSTARTAB.",
       },
     ],
   },
