@@ -7,7 +7,7 @@ export const site = {
   description:
     "CELSTARTAB LLC connects outstanding technology professionals with organizations building the future — helping companies access the engineering expertise they need and helping professionals grow meaningful careers.",
   owner: "Celeste Rex",
-  email: "rexceleste04@outlook.com",
+  email: "admin@celstartab.com",
   phone: "+1 (830) 851-5152",
   phoneHref: "tel:+18308515152",
   address: {
